@@ -1,14 +1,26 @@
 from mcts_node import MCTSNode
 from random import choice
-from math import sqrt, log
+from math import sqrt, log, e
+from numpy import ln
 
 num_nodes = 1000
 explore_faction = 2.
 
 
 def traverse_nodes(node, board, state, identity):
-    """ Traverses the tree until the end criterion are met.
+    if node.child_nodes is None or node.untried_actions:
+        return node
+    else:
+        best_uct = 0.0
+        for child in node.child_nodes:
+            calc_uct = (child.wins/child.vists) + (explore_faction * sqrt((log(child.parent.vists, e))/child.visits))
+            if calc_uct >= best_uct:
+                best_uct = calc_uct
+                best_node = child
 
+        return traverse_nodes(best_node, board, state, identity)
+
+    """ Traverses the tree until the end criterion are met.
     Args:
         node:       A tree node from which the search is traversing.
         board:      The game setup.
@@ -16,14 +28,13 @@ def traverse_nodes(node, board, state, identity):
         identity:   The bot's identity, either 'red' or 'blue'.
 
     Returns:        A node from which the next stage of the search can proceed.
-
     """
-    
-    pass
-    # Hint: return leaf_node
+
+
 
 
 def expand_leaf(node, board, state):
+    
     """ Adds a new leaf to the tree by creating a new child node for the given node.
 
     Args:
@@ -39,6 +50,12 @@ def expand_leaf(node, board, state):
 
 
 def rollout(board, state):
+    while not board.is_ended(state):
+        #choose possible list of actions (legal_actions)
+        #use random choice from import
+        #call state, state = board.next_state(current_state, next_action)
+        #return state
+
     """ Given the state of the game, the rollout plays out the remainder randomly.
 
     Args:
@@ -50,6 +67,12 @@ def rollout(board, state):
 
 
 def backpropagate(node, won):
+    if node is not None:
+        node.wins += won
+        node.visit += 1
+        node = node.parent
+        backpropagate(node, won)
+
     """ Navigates the tree from a leaf node to the root, updating the win and visit count of each node along the path.
 
     Args:
@@ -57,7 +80,6 @@ def backpropagate(node, won):
         won:    An indicator of whether the bot won or lost the game.
 
     """
-    pass
 
 
 def think(board, state):
@@ -85,3 +107,4 @@ def think(board, state):
     # Return an action, typically the most frequently used action (from the root) or the action with the best
     # estimated win rate.
     return None
+
