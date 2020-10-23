@@ -1,7 +1,8 @@
+
 from mcts_node import MCTSNode
 from random import choice
 from math import sqrt, log, e
-from numpy import ln
+import p3_t3
 
 num_nodes = 1000
 explore_faction = 2.
@@ -34,7 +35,6 @@ def traverse_nodes(node, board, state, identity):
 
 
 def expand_leaf(node, board, state):
-    
     """ Adds a new leaf to the tree by creating a new child node for the given node.
 
     Args:
@@ -51,10 +51,9 @@ def expand_leaf(node, board, state):
 
 def rollout(board, state):
     while not board.is_ended(state):
-        #choose possible list of actions (legal_actions)
-        #use random choice from import
-        #call state, state = board.next_state(current_state, next_action)
-        #return state
+        rand_action = choice(board.legal_actions(board, state))
+        state = board.next_state(state, rand_action)
+    return state
 
     """ Given the state of the game, the rollout plays out the remainder randomly.
 
@@ -107,4 +106,3 @@ def think(board, state):
     # Return an action, typically the most frequently used action (from the root) or the action with the best
     # estimated win rate.
     return None
-
