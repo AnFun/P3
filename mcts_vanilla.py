@@ -109,9 +109,15 @@ def think(board, state):
 
         # Start at root
         node = root_node
-
-        # Do MCTS - This is all you!
-
+        
+         #selection
+         #expansion
+         #random outcomes of games, need a way to check if rollout was a win or not, make distinction between win/loss/draw 
+         #backpropagation
+    #find node with the highest win count
+    #run through root children, check highest win rate for children from root, return action of corresponding child 
+        
+       
     # Return an action, typically the most frequently used action (from the root) or the action with the best
     # estimated win rate.
-    return None
+    return
