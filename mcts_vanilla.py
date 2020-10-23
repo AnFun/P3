@@ -14,7 +14,7 @@ def traverse_nodes(node, board, state, identity):
     else:
         best_uct = 0.0
         for child in node.child_nodes:
-            calc_uct = (child.wins/child.vists) + (explore_faction * sqrt((log(child.parent.vists, e))/child.visits))
+            calc_uct = (child.wins/child.vists) + (explore_faction * sqrt((log(child.parent.vists, e))/child.visits)) #remember to alter so that calculation considers the "team"
             if calc_uct >= best_uct:
                 best_uct = calc_uct
                 best_node = child
@@ -35,6 +35,15 @@ def traverse_nodes(node, board, state, identity):
 
 
 def expand_leaf(node, board, state):
+    new_action = node.untried_actions.pop() #retrieve untried action
+    #check validity
+    if new_action is None:
+        return None
+    else:
+        state = node.next_state(state, new_action)
+        new_node = MCTSNode(parent=node, parent_action= new_action, action_list=board.legal_action(state))
+        node.child_nodes.insert(new_node)
+        return new_node
     """ Adds a new leaf to the tree by creating a new child node for the given node.
 
     Args:
