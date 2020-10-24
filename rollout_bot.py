@@ -24,6 +24,12 @@ def think(board, state):
 
     # Define a helper function to calculate the difference between the bot's score and the opponent's.
     def outcome(owned_boxes, game_points):
+        """
+
+        :param owned_boxes:
+        :param game_points:
+        :return:
+        """
         if game_points is not None:
             # Try to normalize it up?  Not so sure about this code anyhow.
             red_score = game_points[1]*9

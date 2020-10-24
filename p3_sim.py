@@ -1,4 +1,5 @@
 import sys
+from multiprocessing import Pool
 from timeit import default_timer as time
 import p3_t3
 import mcts_vanilla
@@ -22,22 +23,23 @@ if len(sys.argv) != 3:
 
 p1 = sys.argv[1]
 if p1 not in players:
-    print("p1 not in "+players.keys().join(","))
+    print("p1 not in " + players.keys().join(","))
     exit(1)
 p2 = sys.argv[2]
 if p2 not in players:
-    print("p2 not in "+players.keys().join(","))
+    print("p2 not in " + players.keys().join(","))
     exit(1)
 
 player1 = players[p1]
 player2 = players[p2]
 
-rounds = 100
-wins = {'draw':0, 1:0, 2:0}
+rounds = 16
+wins = {'draw': 0, 1: 0, 2: 0}
 
 start = time()  # To log how much time the simulation takes.
-for i in range(rounds):
 
+
+def sim(i):
     print("")
     print("Round %d, fight!" % i)
 
@@ -57,7 +59,14 @@ for i in range(rounds):
     elif final_score[2] == 1:
         winner = 2
     print("The %s bot wins this round! (%s)" % (winner, str(final_score)))
-    wins[winner] = wins.get(winner, 0) + 1
+    return winner
+
+
+if __name__ == '__main__':
+    with Pool() as p:
+        winners = p.map(sim, range(rounds))
+        for w in winners:
+            wins[w] += 1
 
 print("")
 print("Final win counts:", dict(wins))

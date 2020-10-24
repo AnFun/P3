@@ -5,16 +5,25 @@ import mcts_modified
 import random_bot
 import rollout_bot
 
+
 def get_human_input(board, state):
+    """
+
+    :param board:
+    :param state:
+    :return:
+    """
     move = input("Which move? BoardY BoardX SquareY SquareX (or q to quit) ").strip()
     if move == "q":
-    	exit(2)
+        exit(2)
     action = board.pack_action(move)
     if board.is_legal(state, action):
         return action
     else:
-        print("Please input moves as space-separated lists of numbers.  Remember that you can only move in the board corresponding to your opponent's last move!")
+        print("Please input moves as space-separated lists of numbers.  Remember that you can only move in the board "
+              "corresponding to your opponent's last move!")
         return get_human_input(board, state)
+
 
 players = dict(
     human=get_human_input,
@@ -33,11 +42,11 @@ if len(sys.argv) != 3:
 
 p1 = sys.argv[1]
 if p1 not in players:
-    print("p1 not in "+players.keys().join(","))
+    print("p1 not in " + players.keys().join(","))
     exit(1)
 p2 = sys.argv[2]
 if p2 not in players:
-    print("p2 not in "+players.keys().join(","))
+    print("p2 not in " + players.keys().join(","))
     exit(1)
 
 player1 = players[p1]
@@ -47,7 +56,7 @@ last_action = None
 current_player = player1
 while not board.is_ended(state):
     print(board.display(state, last_action))
-    print("Player "+str(board.current_player(state)))
+    print("Player " + str(board.current_player(state)))
     last_action = current_player(board, state)
     state = board.next_state(state, last_action)
     current_player = player1 if current_player == player2 else player2
