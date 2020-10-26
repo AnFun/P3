@@ -1,3 +1,5 @@
+#Group: Quinn Satow and Luc Milburn
+#CMPM 146 Fall 2020
 import sys
 import p3_t3
 import mcts_vanilla

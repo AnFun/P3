@@ -1,3 +1,5 @@
+#Group: Quinn Satow and Luc Milburn
+#CMPM 146 Fall 2020
 import random
 
 ROLLOUTS = 10

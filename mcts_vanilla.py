@@ -1,3 +1,6 @@
+#Group: Quinn Satow and Luc Milburn 
+#CMPM 146 Fall 2020
+
 from typing import Optional
 
 from mcts_node import MCTSNode

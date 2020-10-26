@@ -1,3 +1,6 @@
+#Group: Quinn Satow and Luc Milburn
+#CMPM 146 Fall 2020
+
 import sys
 from multiprocessing import Pool
 from timeit import default_timer as time

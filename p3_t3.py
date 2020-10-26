@@ -18,6 +18,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
+#Group: Quinn Satow and Luc Milburn
+#CMPM 146 Fall 2020
+
 num_players = 2
 
 positions = dict(
