@@ -1,0 +1,35 @@
+Group: Luc Milburn, Quinn Satow
+CMPM 146 Fall 2020
+
+EXPERIMENT 1: TREE SIZE
+
+1A: 100 Nodes vs. 50 Nodes
+100 Node wincount: 72
+50 Node wincount: 17
+Draws: 11
+
+1B: 100 Nodes vs. 100 Nodes (Total time: 267 secs)
+100 Node (Player 1) wincount: 65
+100 Node (Player 2) wincount: 21
+Draws: 14
+
+1C: 100 Nodes vs. 200 Nodes (Total time: 389.6287625  secs)
+100 Node wincount: 40
+200 Node wincount: 46
+Draws: 14
+
+1D: 100 Nodes vs. 500 Nodes (Total time: 760.987 secs)
+100 Node wincount: 23
+500 node wincount: 66
+Draws: 11
+
+While such test cases took a lengthy amount of time, 
+they provided more confident results because there was
+a greater consistency as to who was winning. It appears that
+the higher the node count, the smarter the bot will play.
+
+When the bots are evenly matched at the same amount of nodes,
+the first player appears to have a slight advantage on their side.
+This may suggest that the first move allows the player to
+control the board more to their liking as opposed to the second
+player, who essentially must abide by the first play. 
