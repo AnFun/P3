@@ -33,7 +33,7 @@ if p2 not in players:
 player1 = players[p1]
 player2 = players[p2]
 
-rounds = 16
+rounds = 1000
 wins = {'draw': 0, 1: 0, 2: 0}
 
 start = time()  # To log how much time the simulation takes.
